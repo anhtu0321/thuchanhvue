@@ -9,5 +9,5 @@ class customer extends Model
     use DataTablePaginate;
     protected $tabale='customers';
     protected $fillable = ['name','company', 'email', 'address', 'phone'];
-    
+    protected $filter = ['id','name','company', 'email', 'address', 'phone'];
 }
