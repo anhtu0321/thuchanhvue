@@ -1946,11 +1946,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      params: {
+        page: 1,
+        per_page: 10,
+        soft_column: 'id',
+        direction: 'desc',
+        search_column: 'id',
+        search_operator: 'equal_to',
+        search_query_1: '',
+        search_query_2: ''
+      }
+    };
+  },
+  mounted: function mounted() {
+    this.fetchData();
   },
   watch: {},
   computed: {},
-  methods: {}
+  methods: {
+    fetchData: function fetchData() {
+      fetch(this.builUrl()).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        return console.log(data.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    buildUrl: function buildUrl() {
+      var p = this.params;
+      return 'api/customer?page=1&per_page=10&soft_column=id&direction=desc&search_column=id&search_operator=equal_to&search_query_1=2';
+    }
+  }
 });
 
 /***/ }),
@@ -35383,15 +35411,15 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _components_customer_index_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/customer/index.vue */ "./resources/js/components/customer/index.vue");
 /* harmony import */ var _components_customer_show_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/customer/show.vue */ "./resources/js/components/customer/show.vue");
 
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]({
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: [{
     path: '/admin/customer',
     component: _components_customer_index_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
